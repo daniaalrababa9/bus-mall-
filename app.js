@@ -51,7 +51,6 @@ function renderNewProduct() {
   
     } while (forbidden.includes(Product.leftObject))
   
-    // add left goat to forbidden list so we don't double up
     forbidden.push(Product.leftObject);
   
     do {
@@ -59,6 +58,7 @@ function renderNewProduct() {
         Product.centerObject = getRandomProduct();
   
     } while(forbidden.includes( Product.centerObject));
+    forbidden.push(Product.centerObject);
   
     do {
   
@@ -106,7 +106,7 @@ function renderNewProduct() {
     for (var i = 0; i < Product.all.length; i++) {
       var product = Product.all[i];
       var section = addElement('section', body);
-      addElement('p', section, product.title+' Slicer had '+ product.clickCtr+' votes and was shown '+ product.shownCtr+' times.');
+      addElement('p', section, product.title+' had '+ product.clickCtr+' votes and was shown '+ product.shownCtr+' times.');
    
     }
   }
