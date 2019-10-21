@@ -93,11 +93,11 @@ function renderNewProduct() {
     var index = Math.floor(Math.random() * Product.all.length);
     return Product.all[index];
   }
-  function randomInRange(min, max) {
-    var range = max - min + 1; 
-    var rand = Math.floor(Math.random() * range) + min
-    return rand;
-  }
+//   function randomInRange(min, max) {
+//     var range = max - min + 1; 
+//     var rand = Math.floor(Math.random() * range) + min
+//     return rand;
+//   }
   function updateTotals() {
 
     var body= document.getElementById('report');
