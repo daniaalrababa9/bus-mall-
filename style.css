@@ -3,7 +3,7 @@
   }
   
   body {
-    background:radial-gradient(#18ad31, #fff) fixed;
+    background:radial-gradient(#af91a5, #fff) fixed;
     text-align: center;
     font-family: 'Righteous', sans-serif;
   
@@ -18,7 +18,7 @@
   section div img {
     max-width: 100%;
     height: 200px;
-    border: 10px solid olive;
+    border: 10px solid rgb(39, 0, 24);
     border-radius: 5%;
   }
   
