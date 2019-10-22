@@ -40,6 +40,10 @@ new Product('unicorn', 'image/unicorn.jpg');
 new Product('usb', 'image/usb.gif');
 new Product('water-can', 'image/water-can.jpg');
 new Product('win-glass', 'image/wine-glass.jpg');
+
+
+
+
 function renderNewProduct() {
 
   // ensure that previous goats not shown on next round
@@ -147,34 +151,31 @@ function clickHandler(event) {
       renderChart();
 
       renderChart2();
+      updateclicked();
+
 
     } else {
-
       renderNewProduct();
     }
   }
 }
 Product.container.addEventListener('click', clickHandler);
 
-updateTotals();
-
-renderNewProduct();
-
 function getProductTitles() {
 
   var productTitles = [];
-
+  
   for (var i = 0; i < Product.all.length; i++) {
     var productInstance = Product.all[i];
     productTitles.push(productInstance.title + ' clicked');
-
+    
   }
   return productTitles;
 }
 function getClickedScore() {
-
+  
   var ClickedScore = [];
-
+  
   for (var i = 0; i < 20; i++) {
     var ClickedInstance = Product.all[i];
     ClickedScore.push(ClickedInstance.clickCtr);
@@ -184,13 +185,13 @@ function getClickedScore() {
 }
 
 function renderChart() {
-
+  
   var ctx = document.getElementById('myChart').getContext('2d');
-
+  
   var chart = new Chart(ctx, {
-
+    
     type: 'line',
-
+    
     data: {
       labels: getProductTitles(),
 
@@ -211,7 +212,7 @@ function renderChart() {
 function getProductTitles2() {
 
   var productTitles = [];
-
+  
   for (var i = 0; i < Product.all.length; i++) {
     var productInstance = Product.all[i];
     productTitles.push(productInstance.title + ' shown');
@@ -220,7 +221,7 @@ function getProductTitles2() {
   return productTitles;
 }
 function getshownnumber() {
-
+  
   var shownScore = [];
 
   for (var i = 0; i < Product.all.length; i++) {
@@ -231,26 +232,17 @@ function getshownnumber() {
   return shownScore;
 }
 
-
-
-
-
-
-
-
-
-
 function renderChart2() {
-
+  
   var ctx = document.getElementById('theotherone').getContext('2d');
-
+  
   var chart = new Chart(ctx, {
 
     type: 'line',
-
+    
     data: {
       labels: getProductTitles2(),
-
+      
       datasets: [
         {
           label: 'Products',
@@ -265,3 +257,44 @@ function renderChart2() {
 }
 
 
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+function updateclicked(){
+  var datastring=JSON.stringify( Product.all);
+  localStorage.setItem('reports',datastring);
+}
+function getClicked(){
+  var data =localStorage.getItem('reports');
+  var dataoriginal=JSON.parse(data);
+  if(dataoriginal){
+    for (var i=0;i<dataoriginal.length;i++){
+      var rawObject = dataoriginal[i];
+      var currentProduct =Product.all[i];
+      currentProduct.clickCtr=rawObject.clickCtr;
+      currentProduct.shownCtr=rawObject.shownCtr;
+    
+      // new Product (
+        //   rawObject.title,
+        //   rawObject.src,
+        //   rawObject.clickCtr,
+      //   rawObject.shownCtr,
+      //   );
+      
+    }
+    console.log('rawobject', dataoriginal[0].clickCtr);
+    console.log('product', Product.all[0].clickCtr);
+
+    renderNewProduct();  }
+  }
+  
+  
+  
+  
+
+  
+  renderNewProduct();
+
+  getClicked();
+  updateTotals();
