@@ -141,7 +141,7 @@ function clickHandler(event) {
     productClicked.clickCtr++;
     Product.roundCtr++;
 
-    updateTotals();
+    // updateTotals();
 
     if (Product.roundCtr === Product.roundLimit) {
 
@@ -262,15 +262,15 @@ function renderChart2() {
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 function updateclicked(){
-  var datastring=JSON.stringify( Product.all);
-  localStorage.setItem('reports',datastring);
+  var dataString=JSON.stringify( Product.all);
+  localStorage.setItem('reports',dataString);
 }
 function getClicked(){
   var data =localStorage.getItem('reports');
-  var dataoriginal=JSON.parse(data);
-  if(dataoriginal){
-    for (var i=0;i<dataoriginal.length;i++){
-      var rawObject = dataoriginal[i];
+  var dataOriginal=JSON.parse(data);
+  if(dataOriginal){
+    for (var i=0;i<dataOriginal.length;i++){
+      var rawObject = dataOriginal[i];
       var currentProduct =Product.all[i];
       currentProduct.clickCtr=rawObject.clickCtr;
       currentProduct.shownCtr=rawObject.shownCtr;
@@ -283,7 +283,7 @@ function getClicked(){
       //   );
       
     }
-    console.log('rawobject', dataoriginal[0].clickCtr);
+    console.log('rawobject', dataOriginal[0].clickCtr);
     console.log('product', Product.all[0].clickCtr);
 
     renderNewProduct();  }
