@@ -152,7 +152,7 @@ function clickHandler(event) {
 
       renderChart2();
       updateclicked();
-
+      updateTotals();
 
     } else {
       renderNewProduct();
@@ -297,4 +297,4 @@ function getClicked(){
   renderNewProduct();
 
   getClicked();
-  updateTotals();
+  // updateTotals();
