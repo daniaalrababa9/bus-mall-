@@ -46,7 +46,7 @@ new Product('win-glass', 'image/wine-glass.jpg');
 
 function renderNewProduct() {
 
-  // ensure that previous goats not shown on next round
+ 
   var forbidden = [Product.leftObject, Product.centerObject, Product.rightObject];
 
   do {
@@ -97,11 +97,7 @@ function getRandomProduct() {
   var index = Math.floor(Math.random() * Product.all.length);
   return Product.all[index];
 }
-//   function randomInRange(min, max) {
-//     var range = max - min + 1; 
-//     var rand = Math.floor(Math.random() * range) + min
-//     return rand;
-//   }
+
 function updateTotals() {
 
   var body = document.getElementById('report');
@@ -134,18 +130,17 @@ function clickHandler(event) {
   } else if (clickedId === 'right-image') {
     productClicked = Product.rightObject;
   } else {
-    console.log('Um, what was clicked on???', clickedId);
+    console.log(' what was clicked on???', clickedId);
   }
 
   if (productClicked) {
     productClicked.clickCtr++;
     Product.roundCtr++;
 
-    // updateTotals();
 
     if (Product.roundCtr === Product.roundLimit) {
 
-      alert('No more clicking for you!');
+      alert('Thanks. welcome to my webpage');
 
       Product.container.removeEventListener('click', clickHandler);
       renderChart();
@@ -160,6 +155,9 @@ function clickHandler(event) {
   }
 }
 Product.container.addEventListener('click', clickHandler);
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
 function getProductTitles() {
 
@@ -220,7 +218,7 @@ function getProductTitles2() {
   }
   return productTitles;
 }
-function getshownnumber() {
+function getShownNumber() {
   
   var shownScore = [];
 
@@ -248,7 +246,7 @@ function renderChart2() {
           label: 'Products',
           backgroundColor: 'rgb(255, 99, 132)',
           borderColor: 'rgb(255, 99, 132)',
-          data: getshownnumber(),
+          data: getShownNumber(),
         }
       ]
     },
@@ -275,12 +273,7 @@ function getClicked(){
       currentProduct.clickCtr=rawObject.clickCtr;
       currentProduct.shownCtr=rawObject.shownCtr;
     
-      // new Product (
-        //   rawObject.title,
-        //   rawObject.src,
-        //   rawObject.clickCtr,
-      //   rawObject.shownCtr,
-      //   );
+    
       
     }
     console.log('rawobject', dataOriginal[0].clickCtr);
@@ -289,12 +282,6 @@ function getClicked(){
     renderNewProduct();  }
   }
   
-  
-  
-  
-
-  
   renderNewProduct();
 
   getClicked();
-  // updateTotals();
